@@ -1143,6 +1143,20 @@
     </footer>
 
     <script>
+        // Firebase configuration - APNA CONFIG YAHAN DALENGE
+        const firebaseConfig = {
+  apiKey: "AIzaSyCRKr-6SF4zHkf8RFfwqsuHNiNzX_1mvLs",
+  authDomain: "cryptosignalpro-898c2.firebaseapp.com",
+  projectId: "cryptosignalpro-898c2",
+  storageBucket: "cryptosignalpro-898c2.firebasestorage.app",
+  messagingSenderId: "293383930321",
+  appId: "1:293383930321:web:fb86fd41c1c92378a560f0"
+};
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+
         // Mobile Menu Toggle
         document.getElementById('menuToggle').addEventListener('click', function() {
             document.getElementById('mainNav').classList.toggle('active');
