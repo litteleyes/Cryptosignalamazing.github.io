@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Zaroon Crypto Signals</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #121212; color: #fff; padding: 20px; }
+        h1 { color: #00ffcc; }
+        .coin { border: 1px solid #333; border-radius: 10px; padding: 10px; margin: 10px 0; background: #1e1e1e; }
+        .signal-up { color: #00ff00; }
+        .signal-down { color: #ff4444; }
+    </style>
+</head>
+<body>
+    <h1>Zaroon Live Crypto Signals</h1>
+    <div id="crypto-container">Loading...</div>
+
+    <script>
+        const coins = ['bitcoin', 'ethereum', 'gala', 'filecoin', 'solana', 'ordinals', 'optimism', 'thorchain', 'hedera-hashgraph', 'sei-network'];
+
+        async function fetchPrices() {
+            const response = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=' + coins.join(',') + '&vs_currencies=usd');
+            const data = await response.json();
+            const container = document.getElementById('crypto-container');
+            container.innerHTML = '';
+            for (const coin of coins) {
+                const price = data[coin]?.usd ?? 'N/A';
+                const signal = Math.random() > 0.5 ? 'Buy' : 'Sell'; // Placeholder for real logic
+                const signalClass = signal === 'Buy' ? 'signal-up' : 'signal-down';
+                container.innerHTML += `
+                    <div class="coin">
+                        <h3>${coin.toUpperCase()}</h3>
+                        <p>Price: $${price}</p>
+                        <p class="${signalClass}">Signal: ${signal}</p>
+                    </div>
+                `;
+            }
+        }
+
+        fetchPrices();
+        setInterval(fetchPrices, 60000); // refresh every 1 min
+    </script>
+</body>
+</html>
